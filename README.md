@@ -1,4 +1,4 @@
-# Centro medico veterinario
+¿# Centro medico veterinario
 
 es una web donde veterinarios pueden iniciar sesion, registrar mascotas tratadas y visualizar sus consultas previas dinamicamente.
 
@@ -24,34 +24,35 @@ Esto facilita la organización del código y su mantenimiento.
 - **Bootstrap Icons**
 
 ## Estructura del Proyecto
-
-│
+```
+.
 ├── index.html
 ├── README.md
 │
 ├── assets
-│ ├── css
-│ │ └── styles.css
-│ │
-│ └── js
-│ ├── main.js
-│ └── src
-│ ├── components
-│ │ └── cardMascotas.js
-│ │
-│ ├── models
-│ │ ├── mascota.js
-│ │ └── veterinario.js
-│ │
-│ ├── render
-│ │ └── Render.js
-│ │
-│ └── utils
-│ ├── AppManager.js
-│ ├── Auth.js
-│ ├── constants.js
-│ ├── normalizer.js
-│ └── validador.js
+│   ├── css
+│   │   └── styles.css
+│   │
+│   └── js
+│       ├── main.js
+│       └── src
+│           ├── components
+│           │   └── cardMascotas.js
+│           │
+│           ├── models
+│           │   ├── mascota.js
+│           │   └── veterinario.js
+│           │
+│           ├── render
+│           │   └── Render.js
+│           │
+│           └── utils
+│               ├── AppManager.js
+│               ├── Auth.js
+│               ├── constants.js
+│               ├── normalizer.js
+│               └── validador.js
+```
 
 ## Funcionalidades
 
