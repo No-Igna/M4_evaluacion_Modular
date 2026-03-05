@@ -26,7 +26,7 @@ export class Auth {
       alert("Ya existe un veterinario registrado con ese ID.");
     }
     Auth.veterinarios.push(nuevoVeterinario);
-    alert(
+    console.log(
       `Veterinario ${nuevoVeterinario.nombre} ${nuevoVeterinario.apellido} registrado exitosamente.`,
     );
   }
