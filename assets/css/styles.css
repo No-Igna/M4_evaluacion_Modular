@@ -1,0 +1,111 @@
+:root {
+  --vet-green: #2e7d32;
+  --vet-green-light: #4caf50;
+  --vet-green-soft: #e8f5e9;
+}
+
+body {
+  background: #f6faf7;
+}
+
+.vet-navbar {
+  background: linear-gradient(135deg, var(--vet-green), var(--vet-green-light));
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.vet-btn {
+  background: var(--vet-green);
+  color: white;
+  border: none;
+  transition: 0.2s;
+}
+
+.vet-btn:hover {
+  background: var(--vet-green-light);
+  transform: translateY(-1px);
+}
+
+.vet-hero-card {
+  background: linear-gradient(135deg, var(--vet-green), var(--vet-green-light));
+  border: none;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.form-control:focus {
+  border-color: var(--vet-green);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.15);
+}
+
+.input-group-text {
+  background: var(--vet-green-soft);
+  border: none;
+}
+
+.vet-modal-header {
+  background: var(--vet-green);
+  color: white;
+}
+
+.badge {
+  border-radius: 20px;
+}
+
+.vet-login-card {
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.vet-login-header {
+  background: linear-gradient(135deg, #2e7d32, #4caf50);
+  color: white;
+  padding: 20px;
+  font-weight: 600;
+}
+
+.vet-login-wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loginSection {
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+#loginSection .form-control {
+  border-radius: 8px;
+}
+
+#loginSection .input-group-text {
+  background: #e8f5e9;
+  border: none;
+  color: #2e7d32;
+}
+
+#loginSection .vet-btn {
+  padding: 10px;
+  font-weight: 500;
+}
+
+#petList .card {
+  background: white;
+  transition: 0.2s;
+}
+
+#petList .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}

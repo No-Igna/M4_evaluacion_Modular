@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Veterinarios Unidos</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body class="bg-light">
+    <!-- Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark vet-navbar"
+      id="navbar"
+      style="display: none"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-heart-pulse"></i>
+          Clínica Veterinaria
+        </a>
+        <div class="navbar-nav ms-auto">
+          <span class="navbar-text me-3" id="welcomeMessage"></span>
+          <button class="btn btn-outline-light btn-sm" id="logoutBtn">
+            <i class="bi bi-box-arrow-right"></i>
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Login Section -->
+    <div class="container mt-5" id="loginSection">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <div class="card vet-login-card shadow-lg">
+            <div class="card-header vet-login-header text-center">
+              <h4><i class="fa-solid fa-paw me-2"></i> Acceso Veterinario</h4>
+            </div>
+            <div class="card-body">
+              <form id="loginForm">
+                <div class="mb-3">
+                  <label for="usuario" class="form-label">Usuario:</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-person"></i>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="usuario"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Contraseña:</label>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-lock"></i>
+                    </span>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn vet-btn">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Ingresar
+                  </button>
+                </div>
+              </form>
+              <div
+                id="loginError"
+                class="alert alert-danger mt-3"
+                style="display: none"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-4" id="dashboardSection" style="display: none">
+      <div class="row mb-4">
+        <div class="col">
+          <div class="card vet-hero-card text-white">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3><i class="bi bi-clipboard-data"></i> Panel de Control</h3>
+                  <p class="mb-0" id="medicoInfo"></p>
+                </div>
+                <div class="col-auto">
+                  <button
+                    class="btn vet-btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addPatientModal"
+                  >
+                    <i class="bi bi-person-plus"></i>
+                    Agregar Mascota
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="searchPet"
+                  placeholder="Buscar paciente por nombre..."
+                />
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="clearSearch"
+                >
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div
+              class="card-header d-flex justify-content-between align-items-center"
+            >
+              <h5 class="mb-0"><i class="bi bi-people"></i> Mis Pacientes</h5>
+              <span class="badge bg-secondary" id="patientCount">0</span>
+            </div>
+            <div class="card-body">
+              <div id="petList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="addPatientModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+          <!-- Header -->
+          <div class="modal-header vet-modal-header">
+            <h5 class="modal-title d-flex align-items-center gap-2">
+              <i class="fa-solid fa-paw"></i>
+              Agregar Nueva Mascota
+            </h5>
+
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body p-4">
+            <form id="addPetForm">
+              <!-- Datos Mascota -->
+              <div class="mb-4">
+                <h6 class="text-primary fw-semibold mb-3">
+                  <i class="fa-solid fa-dog me-2"></i>
+                  Datos de la Mascota
+                </h6>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="petNombre" class="form-label"> Nombre </label>
+
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-paw"></i>
+                      </span>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="petNombre"
+                        placeholder="Ej: Firulais"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="petEvolucion" class="form-label">
+                      Diagnóstico
+                    </label>
+
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-stethoscope"></i>
+                      </span>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="petEvolucion"
+                        placeholder="Diagnóstico o evolución"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tutor -->
+              <div class="mb-3">
+                <h6 class="text-primary fw-semibold mb-3">
+                  <i class="fa-solid fa-user me-2"></i>
+                  Datos del Tutor
+                </h6>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="petTutor" class="form-label">
+                      Nombre del Tutor
+                    </label>
+
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-user"></i>
+                      </span>
+
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="petTutor"
+                        placeholder="Nombre del tutor"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div
+              id="addPatientError"
+              class="alert alert-danger mt-3 d-none"
+            ></div>
+          </div>
+
+          <!-- Footer -->
+          <div class="modal-footer border-0 px-4 pb-4">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+
+            <button type="submit" form="addPetForm" class="btn vet-btn">
+              <i class="fa-solid fa-floppy-disk me-2"></i>
+              Guardar Mascota
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+  </body>
+</html>
